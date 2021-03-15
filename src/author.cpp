@@ -4,6 +4,7 @@
 
 // 1. реализуйте конструктор ...
 Author::Author(const std::string &full_name, int age, Sex sex) {
+
   // валидация аргументов (здесь был Рамиль)
   if (age < kMinAuthorAge) {
     throw std::invalid_argument("Author::age must be greater than " + std::to_string(kMinAuthorAge));
@@ -12,6 +13,9 @@ Author::Author(const std::string &full_name, int age, Sex sex) {
   if (full_name.empty()) {
     throw std::invalid_argument("Author::full_name must not be empty");
   }
+  age_ = age;
+  sex_ = sex;
+  full_name_ = full_name;
   // Tip 1: инициализируйте поля
 }
 
