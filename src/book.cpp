@@ -1,5 +1,5 @@
 #include "book.hpp"
-
+#include "iostream"
 #include <stdexcept>  // invalid_argument
 
 // 1. реализуйте конструктор ...
@@ -8,6 +8,7 @@ Book::Book(const std::string &title,
            Genre genre,
            Publisher publisher,
            const std::vector<Author> &authors) {
+
 
   // валидация аргументов
   if (title.empty()) {
@@ -23,14 +24,26 @@ Book::Book(const std::string &title,
     throw std::invalid_argument("Book::authors cannot be empty");
   }
 
-  // Tip 1: остались слезы на щеках, осталось лишь инициализировать поля ...
+    title_ = title;
+    content_ = content;
+    authors_ = authors;
+    genre_ = genre;
+    publisher_ = publisher;
 }
 
 // 2. реализуйте метод ...
 bool Book::AddAuthor(const Author &author) {
+    for (auto single_author: authors_){
+        auto name_1 = single_author.GetFullName();
+        auto name_2 = author.GetFullName();
+        std::cout << name_1 << ' ' << name_2;
+        if (name_1 == name_2)
+            return false;
+    }
+    authors_.push_back(author);
   // здесь мог бы быть ваш сногсшибающий код ...
   // Tip 1: для поиска дубликатов можно использовать цикл for-each
-  return false;
+  return true;
 }
 
 // РЕАЛИЗОВАНО
